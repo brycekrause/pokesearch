@@ -1,0 +1,55 @@
+h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+div{
+    outline: solid black;
+}
+body{
+    background-color: rgb(200, 159, 159);
+}
+#dataContainer{
+    position: relative;
+    text-align: center;
+}
+#pokemon_image{
+    position: absolute;
+    top: 60px;
+    left: 650px;
+    max-height: 226px;
+}
+#pokemon_name{
+    position: absolute;
+    top: -5px;
+    left: 650px;
+}
+#pokemon_hp{
+    position: absolute;
+    top: 300px;
+    left: 580px;
+}   
+#pokemon_attack{
+    position: absolute;
+    top: 350px;
+    left: 580px;
+}
+#pokemon_weight{
+    position: absolute;
+    top: 400px;
+    left: 580px;
+}
+#pokemon_defense{
+    position: absolute;
+    top: 350px;
+    left: 780px;
+}
+
+#pokemon_height{
+    position: absolute;
+    top: 400px;
+    left: 780px;
+}
+#pokemon_speed{
+    position: absolute;
+    top: 300px;
+    left: 780px;
+}
