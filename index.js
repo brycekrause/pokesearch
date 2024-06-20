@@ -9,7 +9,7 @@ function get_pokemon() {
     var text = document.getElementById("search").value;
 
     // delete old data
-   card_holder.innerHTML = "";
+    card_holder.innerHTML = "";
     debug.innerHTML = "Debug:"
 
    // get json data from api!
