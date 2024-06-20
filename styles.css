@@ -10,46 +10,53 @@ body{
 #dataContainer{
     position: relative;
     text-align: center;
+    margin: 0 auto;
+}
+#card_holder{
+    min-width: 420px;
+    min-height: 590px;
+    align-content: center;
+    display: inline-block;
 }
 #pokemon_image{
     position: absolute;
     top: 60px;
-    left: 650px;
+    left: 840px;
     max-height: 226px;
 }
 #pokemon_name{
     position: absolute;
     top: -5px;
-    left: 650px;
+    left: 850px;
 }
 #pokemon_hp{
     position: absolute;
     top: 300px;
-    left: 580px;
+    left: 780px;
 }   
 #pokemon_attack{
     position: absolute;
     top: 350px;
-    left: 580px;
+    left: 780px;
 }
 #pokemon_weight{
     position: absolute;
     top: 400px;
-    left: 580px;
+    left: 780px;
 }
 #pokemon_defense{
     position: absolute;
     top: 350px;
-    left: 780px;
+    left: 980px;
 }
 
 #pokemon_height{
     position: absolute;
     top: 400px;
-    left: 780px;
+    left: 980px;
 }
 #pokemon_speed{
     position: absolute;
     top: 300px;
-    left: 780px;
+    left: 980px;
 }

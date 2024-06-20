@@ -3,12 +3,13 @@ const url = 'https://pokeapi.co/api/v2/pokemon/';
 
 function get_pokemon() {
     let dataContainer = document.getElementById("dataContainer");
+    let card_holder = document.getElementById("card_holder");
     let debug = document.getElementById("debug");
 
     var text = document.getElementById("search").value;
 
     // delete old data
-    dataContainer.innerHTML = "";
+   card_holder.innerHTML = "";
     debug.innerHTML = "Debug:"
 
    // get json data from api!
@@ -52,56 +53,56 @@ function get_pokemon() {
 
             let card = document.createElement('img');
             card.src = card_type;
-            dataContainer.appendChild(card);
+            card_holder.appendChild(card);
 
             // then the info
             let name = document.createElement('h1');
             name.id = "pokemon_name";
             name.innerText = response['name'];
-            dataContainer.appendChild(name);
+            card_holder.appendChild(name);
 
             let img = document.createElement('img');
             img.id = "pokemon_image";
             img.src = response['sprites']['other']['official-artwork']['front_default'];
-            dataContainer.appendChild(img);
+            card_holder.appendChild(img);
 
             let hp = document.createElement('h1');
             hp.id = "pokemon_hp";
             hp.innerText = "HP: " + response.stats[0].base_stat;
-            dataContainer.appendChild(hp);
+            card_holder.appendChild(hp);
 
             let attack = document.createElement('h1');
             attack.id = "pokemon_attack";
             attack.innerText = "ATK: " + response.stats[1].base_stat;
-            dataContainer.appendChild(attack);
+            card_holder.appendChild(attack);
             
             let defense = document.createElement('h1');
             defense.id = "pokemon_defense";
             defense.innerText = "DEF: " + response.stats[2].base_stat;
-            dataContainer.appendChild(defense);
+            card_holder.appendChild(defense);
             
             let weight = document.createElement('h1');
             weight.id = "pokemon_weight";
             weight.innerText = "WT: " + response.weight;
-            dataContainer.appendChild(weight);
+            card_holder.appendChild(weight);
             
             let height = document.createElement('h1');
             height.id = "pokemon_height";
             height.innerText = "HT: " + response.height;
-            dataContainer.appendChild(height);
+            card_holder.appendChild(height);
             
             let speed = document.createElement('h1');
             speed.id = "pokemon_speed";
             speed.innerText = "SPD: " + response.stats[5].base_stat;
-            dataContainer.appendChild(speed);
-            
-
+            card_holder.appendChild(speed);
           })
           .catch(error => {
             console.log('Error:', error);
             debug.innerHTML = "Debug: " + error;
           });    
 }
+
+
 
 var searchbox = document.getElementById("search");
 
