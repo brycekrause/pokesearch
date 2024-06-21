@@ -16,7 +16,6 @@ def getImage(link):
    f.write(data)
    f.close()
 
-
 def get_pokemon():
    try:
       pokemon_search = input("Search for a pokemon: ")
@@ -58,7 +57,6 @@ def get_pokemon():
    pokemon_spd = "SPD: " + str(pokemon_info['stats'][5]['base_stat'])
 
    card = Image.open(card_type)
-   width, height = card.size 
    font = ImageFont.truetype("Gill Sans Bold.otf", size=30)
    draw = ImageDraw.Draw(card)
    
@@ -74,24 +72,31 @@ def get_pokemon():
    img = Image.open('temp/pokepic.png')
    img = img.resize((226,226))
 
+   # get dominant color of pokepic
    color_thief = ColorThief('temp/pokepic.png')
    dominant_color = color_thief.get_color(quality=1)
    r, g, b = (dominant_color)
    color = Image.new('RGB',(347,230),(r,g,b))
    
+   #replace transparent pixels with dominant color
+   img = img.convert("RGBA")
+   datas = img.getdata()
+
+   newData = []
+   for item in datas:
+       if item[3] == 0:
+           newData.append((r, g, b))
+       else:
+           newData.append(item)
+
+   img.putdata(newData)
+   img.save('temp\pokepic.png')
+   
    card.paste(color, (37,61))
    card.paste(img, (90,63))
 
-
-
    card.save('temp/card_final.png')
    card.show()
-
-   print(card_type, pokemon_name, pokemon_hp, pokemon_atk, pokemon_def, pokemon_ht)
-
-
-
-
 
    get_pokemon()
 
