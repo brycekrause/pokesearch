@@ -10,16 +10,25 @@ def getInfo(call):
     return {'name': 'Null'}
   return r.json()
 
+def getImage(link):
+   data = requests.get(link).content
+   f = open('temp/pokepic.png', 'wb')
+   f.write(data)
+   f.close()
+
 
 def get_pokemon():
-    pokemon_search = input("Search for a pokemon: ")
-    pokemon_info = getInfo(url + pokemon_search)
-    print(pokemon_info)
+    try:
+        pokemon_search = input("Search for a pokemon: ")
+        pokemon_info = getInfo(url + pokemon_search)
+    except requests.exceptions.JSONDecodeError:
+       print('Invalid pokemon')
+       get_pokemon()
 
     if pokemon_info['types'][0]['type']['name'] == 'colorless' or pokemon_info['types'][0]['type']['name'] == 'normal' or pokemon_info['types'][0]['type']['name'] == 'stellar' or pokemon_info['types'][0]['type']['name'] == 'unknown':
        card_type = 'gfx/colorless.png'
     elif pokemon_info['types'][0]['type']['name'] == 'dark' or pokemon_info['types'][0]['type']['name'] == 'ghost':
-       card_type = 'gfx/dark.png'
+       card_type = 'gfx/darkness.png'
     elif pokemon_info['types'][0]['type']['name'] == 'dragon' or pokemon_info['types'][0]['type']['name'] == 'flying':
        card_type = 'gfx/dragon.png'
     elif pokemon_info['types'][0]['type']['name'] == 'fairy':
@@ -49,6 +58,7 @@ def get_pokemon():
     pokemon_spd = "SPD: " + str(pokemon_info['stats'][5]['base_stat'])
 
     card = Image.open(card_type)
+    width, height = card.size 
     font = ImageFont.truetype("Gill Sans Bold.otf", size=30)
     draw = ImageDraw.Draw(card)
 
@@ -59,8 +69,13 @@ def get_pokemon():
     draw.text(xy=(230,400), text=f'{pokemon_wt}', fill = (0,0,0), font = font)
     draw.text(xy=(230,430), text=f'{pokemon_ht}', fill = (0,0,0), font = font)
     draw.text(xy=(230,460), text=f'{pokemon_spd}', fill = (0,0,0), font = font)
+    
+    getImage(pokemon_image)
+    img = Image.open('temp/pokepic.png')
+    img = img.resize((226,226))
+    card.paste(img, (85,63))
 
-    card.save('card_final.png')
+    card.save('temp/card_final.png')
     card.show()
 
     print(card_type, pokemon_name, pokemon_hp, pokemon_atk, pokemon_def, pokemon_ht)
