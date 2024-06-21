@@ -78,7 +78,7 @@ def get_pokemon():
    r, g, b = (dominant_color)
    color = Image.new('RGB',(347,230),(r,g,b))
    
-   #replace transparent pixels with dominant color
+   # replace transparent pixels with dominant color
    img = img.convert("RGBA")
    datas = img.getdata()
 
@@ -88,13 +88,12 @@ def get_pokemon():
            newData.append((r, g, b))
        else:
            newData.append(item)
-
    img.putdata(newData)
-   img.save('temp\pokepic.png')
-   
-   card.paste(color, (37,61))
-   card.paste(img, (90,63))
 
+   card.paste(color, (37,61))
+   card.paste(img, (97,63))
+
+   img.save('temp/pokepic.png')
    card.save('temp/card_final.png')
    card.show()
 
